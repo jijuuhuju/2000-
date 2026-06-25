@@ -8,16 +8,24 @@
 </head>
 <body>
 
+    <!-- 起動前の画面 -->
     <div id="welcome-screen">
-        <!-- 最初の中心となる顔 -->
-        <div id="crusher-face">☻</div>
-
         <h1>BROWSER CRUSHER</h1>
         <p>⚠️ 注意：光の点滅と音が出ます</p>
-        
-        <!-- WAV形式の音源を読み込み -->
         <audio id="funk-track" src="music.wav" loop type="audio/wav"></audio>
         <button id="start-btn">PLAY FUNK</button>
+    </div>
+
+    <!-- ★これが量産される「ウィンドウ」のテンプレート -->
+    <div id="window-template" class="fake-window" style="display: none;">
+        <div class="title-bar">
+            <span class="close-btn">✖</span>
+        </div>
+        <div class="window-content">
+            <span class="face">☻</span>
+            <span class="face">☻</span>
+            <span class="face">☻</span>
+        </div>
     </div>
 
     <script src="script.js"></script>
