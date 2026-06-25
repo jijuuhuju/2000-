@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: #fff;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#welcome-screen {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff0000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#crusher-face {
+    font-size: 150px;
+    display: none;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+/* 0.2秒ごとにパッ、パッと白黒反転する設定 */
+.crush-mode {
+    animation: flash 0.2s infinite steps(1, end) alternate;
+}
+
+.crush-mode #crusher-face {
+    display: block;
+    animation: shake 0.05s infinite;
+}
+
+/* 自動増殖する顔のスタイル */
+.spawned-face {
+    position: absolute;
+    z-index: 9999;
+    user-select: none;
+    pointer-events: none;
+    animation: shake 0.05s infinite;
+}
+
+/* 白黒反転アニメーション */
+@keyframes flash {
+    0% { background-color: #000; filter: invert(0); }
+    100% { background-color: #fff; filter: invert(1); }
+}
+
+/* ガタガタ激しく揺れるアニメーション */
+@keyframes shake {
+    0% { transform: translate(0, 0) scale(1); }
+    20% { transform: translate(-5px, 5px) scale(1.1); }
+    40% { transform: translate(-5px, -5px) scale(0.9); }
+    60% { transform: translate(5px, 5px) scale(1.05); }
+    80% { transform: translate(5px, -5px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+}
