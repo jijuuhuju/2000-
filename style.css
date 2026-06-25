@@ -9,12 +9,12 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    position: relative;
 }
 
 #welcome-screen {
     text-align: center;
-    position: relative;
-    z-index: 10;
+    z-index: 10000;
 }
 
 button {
@@ -28,44 +28,69 @@ button {
     border-radius: 5px;
 }
 
-#crusher-face {
-    font-size: 150px;
-    display: none;
-    margin-bottom: 20px;
+/* ★送ってもらった画像のウィンドウ見た目を再現 */
+.fake-window {
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    background-color: #f0f0f0; /* 薄いグレーの背景 */
+    border: 3px solid #0000ff; /* 青い枠線 */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    z-index: 99;
+}
+
+/* 青いタイトルバー */
+.title-bar {
+    background-color: #0000ff; /* 鮮やかな青 */
+    height: 35px;
+    position: relative;
+}
+
+/* 右上の大きな×ボタン */
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: -2px;
+    color: #000;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
     user-select: none;
 }
 
-/* 0.2秒ごとにパッ、パッと白黒反転する設定 */
+/* ウィンドウの中身（顔を並べる） */
+.window-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 165px;
+    padding: 0 10px;
+}
+
+/* 黒い顔文字 ☻ */
+.face {
+    font-size: 70px;
+    color: #000; /* 黒い顔 */
+    user-select: none;
+}
+
+/* 白黒反転アニメーション（背景用） */
 .crush-mode {
     animation: flash 0.2s infinite steps(1, end) alternate;
 }
 
-.crush-mode #crusher-face {
-    display: block;
+/* ウィンドウ自体をガタガタ揺らす効果 */
+.fake-window-shake {
     animation: shake 0.05s infinite;
 }
 
-/* 自動増殖する顔のスタイル */
-.spawned-face {
-    position: absolute;
-    z-index: 9999;
-    user-select: none;
-    pointer-events: none;
-    animation: shake 0.05s infinite;
-}
-
-/* 白黒反転アニメーション */
 @keyframes flash {
-    0% { background-color: #000; filter: invert(0); }
-    100% { background-color: #fff; filter: invert(1); }
+    0% { background-color: #000; }
+    100% { background-color: #fff; }
 }
 
-/* ガタガタ激しく揺れるアニメーション */
 @keyframes shake {
-    0% { transform: translate(0, 0) scale(1); }
-    20% { transform: translate(-5px, 5px) scale(1.1); }
-    40% { transform: translate(-5px, -5px) scale(0.9); }
-    60% { transform: translate(5px, 5px) scale(1.05); }
-    80% { transform: translate(5px, -5px) scale(0.95); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-4px, 4px); }
+    100% { transform: translate(4px, -4px); }
 }
